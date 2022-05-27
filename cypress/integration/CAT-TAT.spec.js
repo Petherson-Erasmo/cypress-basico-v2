@@ -164,3 +164,19 @@ describe('Central de Atendimento ao Cliente TAT - Session 5', () => {
     })
 
 })
+
+describe('Central de Atendimento ao Cliente TAT - Session 6', () => {
+    beforeEach(() => {
+        cy.visit('./src/index.html')
+    })
+    
+    it('Marca ambos checkboxes, depois desmarca o último', ()=>{
+        cy.get('input[type="checkbox"]')
+            .as('checkboxes')
+            .check()
+            .should('be.checked')
+            .last()
+            .uncheck()
+            .should('not.be.checked')
+    })
+})
