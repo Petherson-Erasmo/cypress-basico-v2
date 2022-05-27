@@ -2,7 +2,7 @@
 
 describe('Central de Atendimento ao Cliente TAT', ()=> {
     beforeEach(()=> {
-        cy.visit('../../src/index.html')
+        cy.visit('./src/index.html')
     })
     
     it('Verifica o título da aplicação', ()=> {
@@ -11,6 +11,8 @@ describe('Central de Atendimento ao Cliente TAT', ()=> {
     })
 
     it('Preenche os campos obrigatórios e envia o formulário', ()=> {
+        const text = "Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss deixa as pessoas mais interessantis."
+
         cy.get('input[id="firstName"]')
             .type("Teste")
         cy.get('input[id="lastName"]')
@@ -18,12 +20,11 @@ describe('Central de Atendimento ao Cliente TAT', ()=> {
         cy.get('input[id="email"]')
             .type('test@teste.com')
         cy.get('div textarea[id="open-text-area"]')
-            .type('Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss deixa as pessoas mais interessantis.', {delay:0})
+            .type(text, {delay:0})
         cy.get('button[class="button"]')
             .contains('Enviar')
             .click()
-        cy.get('span[class="success"]')
-            .should('be.visible')
+        cy.successMessage()
     })
 
     it('Exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', ()=>{
@@ -38,14 +39,30 @@ describe('Central de Atendimento ao Cliente TAT', ()=> {
         cy.get('button[class="button"]')
             .contains('Enviar')
             .click()
-        cy.get('span[class="error"]')
-            .should('be.visible')
+        cy.erroMessage()
     })
 
     it('Não deveria aceitar caracteres não númericos no campo telefone', ()=>{
         cy.get('input[id="phone"]')
             .type("Jane")
             .should('not.have.value', 'Jane')
+    })
+
+    it('Exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', ()=> {
+        cy.get('input[id="firstName"]')
+            .type("Teste")
+        cy.get('input[id="lastName"]')
+            .type("Cypress")
+        cy.get('input[id="email"]')
+            .type('test@teste.com')
+        cy.get('input[id="phone-checkbox"]')
+            .check()
+        cy.get('div textarea[id="open-text-area"]')
+            .type('Isso é um teste de automação usando o Cypress')
+        cy.get('button[class="button"]')
+            .contains('Enviar')
+            .click()
+        cy.erroMessage()
     })
 
     it('Preenche e limpa os campos nome, sobrenome, email e telefone', ()=> {
@@ -68,8 +85,7 @@ describe('Central de Atendimento ao Cliente TAT', ()=> {
         cy.get('button[class="button"]')
             .contains('Enviar')
             .click()
-        cy.get('span[class="error"]')
-            .should('be.visible')
+        cy.erroMessage()
     })
 
     it('Exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', ()=>{
@@ -84,8 +100,20 @@ describe('Central de Atendimento ao Cliente TAT', ()=> {
         cy.fillMandatoryFieldsAndSubmit()
     })
 
-    it('Exercício extra 8', ()=>{
-        
+    it('Substitui o get por contains', ()=>{
+        const text = "Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss deixa as pessoas mais interessantis."
+
+        cy.get('input[id="firstName"]')
+            .type("Teste")
+        cy.get('input[id="lastName"]')
+            .type("Cypress")
+        cy.get('input[id="email"]')
+            .type('test@teste.com')
+        cy.get('div textarea[id="open-text-area"]')
+            .type(text, {delay:0})
+        cy.contains('button', 'Enviar')
+            .click()
+        cy.successMessage()
     })
 
 })
