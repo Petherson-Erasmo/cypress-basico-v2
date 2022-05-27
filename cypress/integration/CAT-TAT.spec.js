@@ -1,6 +1,7 @@
 /// <reference types="Cypress" />
 
-describe('Central de Atendimento ao Cliente TAT', () => {
+describe('Central de Atendimento ao Cliente TAT - Session 3', () => {
+
     beforeEach(() => {
         cy.visit('./src/index.html')
     })
@@ -115,10 +116,9 @@ describe('Central de Atendimento ao Cliente TAT', () => {
             .click()
         cy.successMessage()
     })
-
 })
 
-describe.only('Central de Atendimento ao Cliente TAT - Sessão 4', () => {
+describe('Central de Atendimento ao Cliente TAT - Session 4', () => {
     beforeEach(() => {
         cy.visit('./src/index.html')
     })
@@ -140,4 +140,27 @@ describe.only('Central de Atendimento ao Cliente TAT - Sessão 4', () => {
             .select(1)
             .should('have.value', 'blog')
     })
+})
+
+describe('Central de Atendimento ao Cliente TAT - Session 5', () => {
+    beforeEach(() => {
+        cy.visit('./src/index.html')
+    })
+
+    it('Marca o tipo de atendimento "Feedback"', () => {
+        cy.get('input[value="feedback"]')
+            .check()
+            .should('have.value', 'feedback')
+    })
+
+    it('Marca cada tipo de atendimento', () => {
+        cy.get('input[type="radio"]')
+            .should('have.length', 3)
+            .each(function($radio) {
+                cy.wrap($radio)
+                    .check()
+                    .should('be.checked')
+            })
+    })
+
 })
