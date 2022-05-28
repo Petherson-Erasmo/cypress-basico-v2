@@ -213,7 +213,7 @@ describe('Central de Atendimento ao Cliente TAT - Session 7', () => {
     })
 })
 
-describe.only('Central de Atendimento ao Cliente TAT - Session 8', () => {
+describe('Central de Atendimento ao Cliente TAT - Session 8', () => {
     beforeEach(() => {
         cy.visit('./src/index.html')
     })
