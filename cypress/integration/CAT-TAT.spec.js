@@ -212,3 +212,24 @@ describe('Central de Atendimento ao Cliente TAT - Session 7', () => {
             })
     })
 })
+
+describe.only('Central de Atendimento ao Cliente TAT - Session 8', () => {
+    beforeEach(() => {
+        cy.visit('./src/index.html')
+    })
+    
+    it('Verifica que a política de privacidade abre em outra aba sem a necessidade de um clique', ()=>{
+        cy.get('div[id="privacy"] a')
+            .should('have.attr', 'target', '_blank')
+    })
+    
+    it('Acessa a página da política de privacidade removendo o target e então clicanco no link', ()=>{
+        cy.get('div[id="privacy"] a')
+            .invoke('removeAttr', 'target')
+            .click()
+        cy.contains('Talking About Testing')
+            .should('be.visible')
+    })
+    
+
+})
