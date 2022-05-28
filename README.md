@@ -1,29 +1,39 @@
-# Testes automatizados com Cypress - Básico
+# Curso Cypress Basico V2
 
-👋 Seja bem-vindo(a)!
+Projeto do curso de Cypresse nivél básico da escola Talking About Testing online school.
 
-É muito bom tê-lo(a) aqui. Tenho certeza que você vai adorar este curso. ❤️
+## Pré-requisitos
 
-## O que você vai aprender
+Vá para a seção de [Pré-requisitos](./_pre-requirements_.md) para da uma olhada no que é necessário.
 
-Durante o curso de testes automatizados com Cypress (básico), você vai aprender:
+## Installation
 
-- Como configurar um projeto Cypress do zero
-- Como visitar páginas locais e remotas
-- Como lidar com os elementos mais comuns encontrados em aplicações web
-- Como testar _upload_ de arquivos
-- Como realizar as mais diversas verificações de resultados esperados
-- Como criar comandos customizados
-- Como lidar com links que abrem em outra aba do navegador
-- Como rodar testes simulando as dimensões de um dispositivo móvel
-- Como resolver os mesmos problemas de diferentes formas, conhecendo a [API do Cypress](https://docs.cypress.io/api/table-of-contents)
-- Como executar os testes em um _pipeline_ de integração contínua sempre que mudanças ocorrerem no código da aplicação (ou dos testes)
-- Como criar uma documentação mínima para seu projeto de testes automatizados
+No terminal execute `npm install` (ou `npm i`) para realizar a instalação da dev dependencies.
 
-## Vamos começar?
+## Testes
 
-Vá para a seção [estrutura do curso](./lessons/_course-structure_.md).
+Você pode executar os testes simulando uma versão _Desktop_ ou _Mobile_
+
+### Desktop
+
+- No terminal execute `npm run cy:open` para abrir o _Test Runner_ e rodar os testes no tamanho de _1280x880_ (desktop).
+
+  Ou
+
+- No terminal execute `npm run cy:run` executar os teste no modo _headless_ no tamanho de _1280x880_ (desktop).
+
+### Mobile
+
+- No terminal execute `cy:open:mobile` para abrir o _Test Runner_ e rodar os testes no tamanho de _410x860_ (mobile).
+
+  Ou
+
+- No terminal execute `npm run cy:run:mobile` executar os teste no modo _headless_ no tamanho de _410x860_ (mobile).
+
+## Apoiar esse projeto
+
+Se você gostar desse projeto deixa uma ⭐.
 
 ___
 
-Este é mais um curso da [**Escola Talking About Testing**](https://udemy.com/user/walmyr).
+Estes projeto foi desenvolvido por [Pet 🐶](https://www.linkedin.com/in/petherson-erasmo/).
