@@ -1,10 +1,10 @@
 /// <reference types="Cypress" />
 
-describe('Central de Atendimento ao Cliente TAT - Session 3', () => {
+beforeEach(() => {
+    cy.visit('./src/index.html')
+})
 
-    beforeEach(() => {
-        cy.visit('./src/index.html')
-    })
+describe('Central de Atendimento ao Cliente TAT - Seção 3', () => {
 
     it('Verifica o título da aplicação', () => {
         cy.title()
@@ -118,10 +118,7 @@ describe('Central de Atendimento ao Cliente TAT - Session 3', () => {
     })
 })
 
-describe('Central de Atendimento ao Cliente TAT - Session 4', () => {
-    beforeEach(() => {
-        cy.visit('./src/index.html')
-    })
+describe('Central de Atendimento ao Cliente TAT - Seção 4', () => {
 
     it('Seleciona um produto (YouTube) por seu texto', () => {
         cy.get('select[id="product"]')
@@ -142,10 +139,7 @@ describe('Central de Atendimento ao Cliente TAT - Session 4', () => {
     })
 })
 
-describe('Central de Atendimento ao Cliente TAT - Session 5', () => {
-    beforeEach(() => {
-        cy.visit('./src/index.html')
-    })
+describe('Central de Atendimento ao Cliente TAT - Seção 5', () => {
 
     it('Marca o tipo de atendimento "Feedback"', () => {
         cy.get('input[value="feedback"]')
@@ -165,10 +159,7 @@ describe('Central de Atendimento ao Cliente TAT - Session 5', () => {
 
 })
 
-describe('Central de Atendimento ao Cliente TAT - Session 6', () => {
-    beforeEach(() => {
-        cy.visit('./src/index.html')
-    })
+describe('Central de Atendimento ao Cliente TAT - Seção 6', () => {
     
     it('Marca ambos checkboxes, depois desmarca o último', ()=>{
         cy.get('input[type="checkbox"]')
@@ -181,10 +172,7 @@ describe('Central de Atendimento ao Cliente TAT - Session 6', () => {
     })
 })
 
-describe('Central de Atendimento ao Cliente TAT - Session 7', () => {
-    beforeEach(() => {
-        cy.visit('./src/index.html')
-    })
+describe('Central de Atendimento ao Cliente TAT - Seção 7', () => {
     
     it('Seleciona um arquivo da pasta fixtures', ()=>{
         cy.get('input[id="file-upload"]')
@@ -213,11 +201,8 @@ describe('Central de Atendimento ao Cliente TAT - Session 7', () => {
     })
 })
 
-describe('Central de Atendimento ao Cliente TAT - Session 8', () => {
-    beforeEach(() => {
-        cy.visit('./src/index.html')
-    })
-    
+describe('Central de Atendimento ao Cliente TAT - Seção 8', () => {
+   
     it('Verifica que a política de privacidade abre em outra aba sem a necessidade de um clique', ()=>{
         cy.get('div[id="privacy"] a')
             .should('have.attr', 'target', '_blank')
@@ -230,6 +215,29 @@ describe('Central de Atendimento ao Cliente TAT - Session 8', () => {
         cy.contains('Talking About Testing')
             .should('be.visible')
     })
-    
+})
 
+describe('Central de Atendimento ao Cliente TAT - Seção 12', () => {
+    
+    it('Para o tempo, pereenche os campos obrigatórios, envia o formulário e avança no tempo', ()=> {
+        const text = "Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss deixa as pessoas mais interessantis."
+        cy.clock()
+
+        cy.get('input[id="firstName"]')
+            .type("Teste")
+        cy.get('input[id="lastName"]')
+            .type("Cypress")
+        cy.get('input[id="email"]')
+            .type('test@teste.com')
+        cy.get('div textarea[id="open-text-area"]')
+            .type(text, { delay: 0 })
+        cy.get('button[class="button"]')
+            .contains('Enviar')
+            .click()
+        cy.get('span[class="success"]')
+            .should('be.visible')
+        cy.tick(3000)
+        cy.get('span[class="success"]')
+         .should('not.be.visible')
+    })
 })
